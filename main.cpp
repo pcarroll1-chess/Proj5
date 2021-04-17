@@ -39,19 +39,6 @@ int main()
             inputFile >> matrix_Allocation [i][3];
         }
 
-
-        // Display Allocation Matrix
-        cout << "The Allocation Matrix is... Before Max\n";
-        cout <<"   A B C D\n";
-        for (int i = 0; i < 5 ; ++i) {
-            cout << i << ": "
-                 << matrix_Allocation[i][0] << " "
-                 << matrix_Allocation[i][1] << " "
-                 << matrix_Allocation[i][2] << " "
-                 << matrix_Allocation[i][3] << "\n";
-        }
-        cout << "\n";
-
         // Read in Max Matrix
         for (int i = 0; i < 5 ; ++i) {
             inputFile >> matrix_Max [i][0];
@@ -59,18 +46,6 @@ int main()
             inputFile >> matrix_Max [i][2];
             inputFile >> matrix_Max [i][3];
         }
-        // Display Allocation Matrix
-        cout << "The Allocation Matrix is... After Max\n";
-        cout <<"   A B C D\n";
-        for (int i = 0; i < 5 ; ++i) {
-            cout << i << ": "
-                 << matrix_Allocation[i][0] << " "
-                 << matrix_Allocation[i][1] << " "
-                 << matrix_Allocation[i][2] << " "
-                 << matrix_Allocation[i][3] << "\n";
-        }
-        cout << "\n";
-
 
         // Calculate the Need Matrix
         for (int i = 0; i < 5 ; ++i) {
@@ -78,6 +53,12 @@ int main()
             matrix_Need[i][1] = matrix_Max [i][1] - matrix_Allocation [i][1];
             matrix_Need[i][2] = matrix_Max [i][2] - matrix_Allocation [i][2];
             matrix_Need[i][3] = matrix_Max [i][3] - matrix_Allocation [i][3];
+        }
+
+        // Calculate the Request Vector
+        for (int i = 0; i < 4; ++i)
+        {
+            inputFile >> matrix_Request_Vector[i];
         }
 
 
