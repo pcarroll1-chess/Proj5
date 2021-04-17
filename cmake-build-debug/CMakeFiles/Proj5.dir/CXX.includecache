@@ -1,0 +1,14 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/Patrick/Desktop/OneDrive - Texas A&M University - Corpus Christi/Clion/OS_Class/Proj5/main.cpp
+iostream
+-
+fstream
+-
+

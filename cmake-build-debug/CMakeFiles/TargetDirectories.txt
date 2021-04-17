@@ -1,0 +1,3 @@
+C:/Users/Patrick/Desktop/OneDrive - Texas A&M University - Corpus Christi/Clion/OS_Class/Proj5/cmake-build-debug/CMakeFiles/Proj5.dir
+C:/Users/Patrick/Desktop/OneDrive - Texas A&M University - Corpus Christi/Clion/OS_Class/Proj5/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Patrick/Desktop/OneDrive - Texas A&M University - Corpus Christi/Clion/OS_Class/Proj5/cmake-build-debug/CMakeFiles/rebuild_cache.dir
