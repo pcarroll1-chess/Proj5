@@ -11,8 +11,7 @@ int main()
     int mRows = 5;    // n x m allocation matrix
     int n; // number of processes: n
     int m; // number of resource types: m
-//    string line;
-    int number;
+    char trash;
     int matrix_Allocation [5][4] = {0};
     int matrix_Max [5][4] = {0};
     int matrix_Available_Vector [4] = {0};
@@ -22,6 +21,7 @@ int main()
 
     // Read in in file
     // [] need to check against command line arg
+
     if (!inputFile.is_open()){return -1;}
     else
     {
@@ -55,7 +55,15 @@ int main()
             matrix_Need[i][3] = matrix_Max [i][3] - matrix_Allocation [i][3];
         }
 
+        // Calculate the Available Vector
+        for (int i = 0; i < 4; ++i)
+        {
+            inputFile >> matrix_Available_Vector[i];
+        }
+
         // Calculate the Request Vector
+        inputFile >> trash;
+        inputFile >> trash;
         for (int i = 0; i < 4; ++i)
         {
             inputFile >> matrix_Request_Vector[i];
@@ -93,6 +101,7 @@ int main()
              << matrix_Max[i][3] << "\n";
     }
     cout << "\n";
+
     // Display Need Matrix
     cout << "The Need Matrix is...\n";
     cout <<"   A B C D\n";
@@ -103,6 +112,69 @@ int main()
              << matrix_Need[i][2] << " "
              << matrix_Need[i][3] << "\n";
     }
+    cout << endl;
+
+    // Display Available Vector
+    cout << "The Available Vector is...\n";
+    cout <<"   A B C D\n";
+    for (int i = 0; i < 1; ++i) {
+        cout << i+1 << ": ";
+        for (int i = 0; i < m; ++i) {
+            cout << matrix_Available_Vector[i] << " ";
+        }
+        cout << endl;
+    }
+    cout << endl;
+
+    // Check the State
+    bool safe = true;
+    for (int i = 0; i < m; ++i) {
+        for (int b = 0; b < n; ++b) {
+            if (matrix_Need[m][n] < 0)
+                safe = false;
+        }
+    }
+    if (safe)
+    {
+        cout << "THE SYSTEM IS IN A SAFE STATE!\n";
+    }
+    else
+    {
+        cout << "THE SYSTEM IS NOT IN A SAFE STATE!\n";
+        return 0;
+    }
+
+    // Display Request Vector
+    cout << "The Request Vector is...\n";
+    cout <<"   A B C D\n";
+    for (int i = 0; i < 1; ++i) {
+        cout << i+1 << ": ";
+        for (int i = 0; i < m; ++i) {
+            cout << matrix_Request_Vector[i] << " ";
+        }
+        cout << endl;
+    }
+    cout << endl;
+
+    // Check if Request can be granted
+    for (int i = 0; i < n; ++i)
+    {
+        if (
+                (matrix_Available_Vector[n] - matrix_Request_Vector[n]) < 0
+            )
+        {
+            cout << "THE REQUEST CANNOT BE GRANTED!";
+            return 0;
+        }
+    }
+    cout << "THE REQUEST CAN BE GRANTED!\n";
+
+    cout << "The Available Vector is...\n";
+    cout <<"A B C D\n";
+    for ( int i = 0; i < n; ++i) {
+
+    }
+
 
 
     inputFile.close();
