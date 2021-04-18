@@ -17,7 +17,7 @@ int main()
     int matrix_Available_Vector [4] = {0};
     int matrix_Request_Vector [4] = {0};
     int matrix_Need [5][4] = {0};
-    int matrix_Available [5][4] = {0};
+    int matrix_Available [4] = {0};
 
     // Read in in file
     // [] need to check against command line arg
@@ -32,7 +32,7 @@ int main()
         inputFile >> m;
 
         // Read in Allocation Matrix
-        for (int i = 0; i < 5 ; ++i) {
+        for (int i = 0; i < n ; ++i) {
             inputFile >> matrix_Allocation [i][0];
             inputFile >> matrix_Allocation [i][1];
             inputFile >> matrix_Allocation [i][2];
@@ -40,7 +40,7 @@ int main()
         }
 
         // Read in Max Matrix
-        for (int i = 0; i < 5 ; ++i) {
+        for (int i = 0; i < n ; ++i) {
             inputFile >> matrix_Max [i][0];
             inputFile >> matrix_Max [i][1];
             inputFile >> matrix_Max [i][2];
@@ -48,7 +48,7 @@ int main()
         }
 
         // Calculate the Need Matrix
-        for (int i = 0; i < 5 ; ++i) {
+        for (int i = 0; i < n ; ++i) {
             matrix_Need[i][0] = matrix_Max [i][0] - matrix_Allocation [i][0];
             matrix_Need[i][1] = matrix_Max [i][1] - matrix_Allocation [i][1];
             matrix_Need[i][2] = matrix_Max [i][2] - matrix_Allocation [i][2];
@@ -56,7 +56,7 @@ int main()
         }
 
         // Calculate the Available Vector
-        for (int i = 0; i < 4; ++i)
+        for (int i = 0; i < m; ++i)
         {
             inputFile >> matrix_Available_Vector[i];
         }
@@ -64,7 +64,7 @@ int main()
         // Calculate the Request Vector
         inputFile >> trash;
         inputFile >> trash;
-        for (int i = 0; i < 4; ++i)
+        for (int i = 0; i < m; ++i)
         {
             inputFile >> matrix_Request_Vector[i];
         }
@@ -81,7 +81,7 @@ int main()
     // Display Allocation Matrix
     cout << "The Allocation Matrix is...\n";
     cout <<"   A B C D\n";
-    for (int i = 0; i < 5 ; ++i) {
+    for (int i = 0; i < n ; ++i) {
         cout << i << ": "
              << matrix_Allocation[i][0] << " "
              << matrix_Allocation[i][1] << " "
@@ -93,7 +93,7 @@ int main()
     // Display Max Matrix
     cout << "The Max Matrix is...\n";
     cout <<"   A B C D\n";
-    for (int i = 0; i < 5 ; ++i) {
+    for (int i = 0; i < n ; ++i) {
         cout << i << ": "
              << matrix_Max[i][0] << " "
              << matrix_Max[i][1] << " "
@@ -105,7 +105,7 @@ int main()
     // Display Need Matrix
     cout << "The Need Matrix is...\n";
     cout <<"   A B C D\n";
-    for (int i = 0; i < 5 ; ++i) {
+    for (int i = 0; i < n ; ++i) {
         cout << i << ": "
              << matrix_Need[i][0] << " "
              << matrix_Need[i][1] << " "
@@ -157,10 +157,10 @@ int main()
     cout << endl;
 
     // Check if Request can be granted
-    for (int i = 0; i < n; ++i)
+    for (int i = 0; i < m; ++i)
     {
         if (
-                (matrix_Available_Vector[n] - matrix_Request_Vector[n]) < 0
+                (matrix_Available_Vector[i] - matrix_Request_Vector[i]) < 0
             )
         {
             cout << "THE REQUEST CANNOT BE GRANTED!";
@@ -170,11 +170,17 @@ int main()
     cout << "THE REQUEST CAN BE GRANTED!\n";
 
     cout << "The Available Vector is...\n";
-    cout <<"A B C D\n";
-    for ( int i = 0; i < n; ++i) {
 
+    // Calculate the new Available Vector
+    for ( int i = 0; i < n; ++i) {
+        matrix_Available[i] =  matrix_Available_Vector[i] - matrix_Request_Vector[i];
     }
 
+    // Display the new Available Vector
+    cout <<"A B C D\n";
+    for ( int i = 0; i < m; ++i) {
+         cout << matrix_Available[i] << " ";
+    }
 
 
     inputFile.close();
